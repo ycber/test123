@@ -1,3 +1,8 @@
+/* Organisation und Architektur von Rechnern -- Sommersemester 2014
+ *   Blatt 2, Aufgabe 2
+ *   Timm-Oliver Stooﬂ  -   stu116914@mail.uni-kiel.de
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 
