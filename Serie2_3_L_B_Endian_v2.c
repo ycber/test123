@@ -9,7 +9,7 @@ void show_bytes(pointer start, int len) {
 }
 
 void decide_endian(pointer start) {
-   if (start) {
+   if (start[0]) {
       printf("Little Endian");
    }
    else {
@@ -26,7 +26,7 @@ int main() {
    int a = 0001;
    printf("int a = 0001;\n");
    show_bytes((pointer) &a, sizeof(int));
-   decide_endian(a);
+   decide_endian((pointer) &a);
 
   return 0;
 }
