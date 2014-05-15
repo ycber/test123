@@ -1,0 +1,126 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}    % noch mehr mathematische Symbole
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+
+\usepackage{geometry}                                                                    % Rand einstellen
+\geometry{verbose,a4paper,tmargin=25mm,bmargin=25mm,lmargin=30mm,rmargin=35mm}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Gruppe 2}
+\rhead{Dimitrios-Deniz Antoulis / Timm-Oliver Stooß}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+% Für natürliche Zahlen N, reelle Zahlen R und so weiter ...
+\AtBeginDocument{%
+  \let\mathbb\relax
+  \DeclareMathAlphabet\PazoBB{U}{fplmbb}{m}{n}
+  \newcommand{\mathbb}{\PazoBB}
+}
+\newcommand {\N}{\PazoBB{N}}   % natürliche Zahlen
+\newcommand {\Z}{\PazoBB{Z}}   % ganze Zahlen
+\newcommand {\Q}{\PazoBB{Q}}   % rationale Zahlen
+\newcommand {\R}{\PazoBB{R}}   % reelle Zahlen
+
+
+\newcommand {\Pm}{\mathcal{P}} % Potenzmenge
+\newcommand {\Rm}{\mathcal{R}} % kalligravarphisches R
+
+\begin{document}
+
+\subsection*{ADS - Serie 4}
+\subsection*{Aufgabe 4.2 Speicheraufwand Mergesort}
+\begin{enumerate}
+\item[Vor.:] 
+  Sei $M : \N \to \N_0$ mit: 
+
+\[
+M(n) = 
+\left\{
+\begin{array}{lll}
+&  0                                              & \quad :  \text{ falls } n = 1                \\ 
+& n + M( \lceil n/2 \rceil )             & \quad :  \text{ sonst}     \\
+\end{array}
+\right.
+\]
+
+
+
+
+\item[Beh.:] Es gilt: \quad
+$
+  2(n-1) \quad \leq           \quad M(n) \quad \leq \quad       2 (n-1) + \lceil \log_2 n \rceil
+$
+
+
+\item[Bew Teil 1.:] Induktion über $l\in\N$. Erst   $2(n-1) \; \leq \; M(n)$
+\item[IA.:] l = 1
+\[
+  2 (n-1) = 2 (1-1) = 2 \cdot 0 = 0 \quad \leq \quad M(1) = M(n)
+\]
+
+
+
+\item[IV.:]  Sei $l\in \N$ und es gelte für alle $n\in \{ 1, \dots l \}: \quad  2(n-1) \; \leq \; M(n)$
+
+
+
+\item[IS.:] zz. Die Aussage gilt für $l+1$.\quad
+                      $\big( \;2((l+1)-1) \quad \leq \quad M(l+1) \;\big)$
+
+Nebenbeh.(*): $1 \leq \lceil (l+1)/2 \rceil \leq l$ \\
+Bew.:
+\[
+1 \;\leq\; \lceil (1+1) /2 \rceil\; \leq\;  \lceil (l+1)/2 \rceil \;\leq\;   \lceil (l+l)/2 \rceil \;\leq \; \lceil 2l/2 \rceil\; \leq\; l
+\]
+Mit (*) darf die IV bei $\lceil (l+1)/2 \rceil$ angewendet werden.
+\begin{align*}
+       M(l+1)       =     &\;   (l+1) + M(\lceil (l+1)/2 \rceil )         & \text{ Def. von } M \\
+                        \geq &\;   (l+1) + 2 (\lceil (l+1)/2 \rceil -1)     &  \text{ IV und (*) } \\
+                        =      &\;   l+1 + 2 \lceil (l+1) / 2 \rceil  - 2       &    \\
+                        =      &\;   l - 1 + \lceil (l+1) \rceil                    &   \\
+                        =      &\;   l -1 + l +1                                        &    \\
+                        =      &\;  2 l                                                     &     \\
+                        =      &\; 2 (l +1 -1)                                         &    \\
+                        =      &\;  2 ((l+1) -1)                                       &     \\
+  \end{align*}
+
+Also gilt $2(n-1) \quad \leq \quad M(n)$.
+
+\item[Bew Teil 2.:] nun   $M(n) \;  \leq \;   2 (n-1) + \lceil \log_2 n \rceil$
+\item[IA.:] l = 1
+\[
+  M(l) = M(1) = 0 \; \leq \; 0 + 0 =2 (1-1) + \lceil \log_2 1 \rceil
+                                                         = 2 (l-1) + \lceil \log_2 l \rceil
+\]
+
+
+
+\pagebreak
+\item[IV.:] Sei $l\in \N$ und es gelte für alle $n\in \{ 1, \dots l \}$: 
+   $M(n) \; \leq \; 2 (n-1) + \lceil \log_2 n \rceil$.
+\item[IS.:] zz.: $M(l+1) \quad \leq \quad 2 ((l+1)-1) + \lceil \log_2 (l+1) \rceil$.\\
+
+\begin{align*}
+      M(l+1)     =     &\;         (l+1) + M(\lceil (l+1) / 2 \rceil)                                                                    & \text{ Def. von } M \\
+                      \leq &\;     (l+1) + 2 (\lceil(l+1) /2 \rceil -1) + \lceil \log_2 \lceil (l+1) / 2 \rceil \rceil         &  \text{ IV und (*) } \\
+                      \leq &\;      l + 1 + \lceil l +1 \rceil - 2 +   \lceil \log_2 (l+1) \rceil - 1                                &  \text{ Hinweis}  \\
+                      =    &\;       2 l -1 + \lceil \log_2 (l+1) \rceil &\\
+                      \leq    &\; 2 l + \lceil \log_2 (l+1) \rceil &\\
+                      =    &\; 2 ((l+1)-1) + \lceil \log_2 (l+1) \rceil &\\
+  \end{align*}   
+Also gilt $M(n) \;  \leq \;   2 (n-1) + \lceil \log_2 n \rceil$.
+
+
+
+
+
+\end{enumerate}
+\end{document}

@@ -1,3 +1,10 @@
+/* Organisation und Architektur von Rechnern -- Sommersemester 2014
+ *   Blatt 3, Aufgabe 3.1 - Bit-Darstellung
+ *   Timm-Oliver Stooß  <stu116914@mail.uni-kiel.de>
+ *   Tim-Niklas Reck <stu114743@mail.uni-kiel.de>
+ *   Malte Schlesiger <stu107813@mail.uni-kiel.de>
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -52,6 +59,6 @@ int main() {
    make_bit_array(x);
    int_vektor = create_int(x);
    printf("Bit-Vektor: "); print_bit_array(x);
-   printf("Integer-Vektor: %d", int_vektor);
+   printf("zugehöriger Integer-Vektor: %d", int_vektor);
    return 0;
 }
