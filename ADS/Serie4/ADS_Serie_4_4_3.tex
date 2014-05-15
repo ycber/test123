@@ -1,0 +1,69 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}    % noch mehr mathematische Symbole
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Gruppe 2}
+\rhead{Dimitrios Dernis / Timm-Oliver Stooß}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\usepackage{geometry}                                                                    % Rand einstellen
+\geometry{verbose,a4paper,tmargin=25mm,bmargin=25mm,lmargin=30mm,rmargin=35mm}
+
+% Für natürliche Zahlen N, reelle Zahlen R und so weiter ...
+\AtBeginDocument{%
+  \let\mathbb\relax
+  \DeclareMathAlphabet\PazoBB{U}{fplmbb}{m}{n}
+  \newcommand{\mathbb}{\PazoBB}
+}
+\newcommand {\N}{\PazoBB{N}}   % natürliche Zahlen
+\newcommand {\Z}{\PazoBB{Z}}   % ganze Zahlen
+\newcommand {\Q}{\PazoBB{Q}}   % rationale Zahlen
+\newcommand {\R}{\PazoBB{R}}   % reelle Zahlen
+
+
+\newcommand {\Pm}{\mathcal{P}} % Potenzmenge
+\newcommand {\Rm}{\mathcal{R}} % kalligravarphisches R
+
+\begin{document}
+
+\subsection*{ADS - Serie 4}
+\subsection*{Aufgabe 4.3 Rechenaufwand Bubblesort}
+\begin{enumerate}
+\item[Vor.:] Programm siehe Aufgabenblatt
+\item[Beh.:]  Bubblesort hat einen maximalen Rechenaufwand von $17n^2 - 32n +17$.
+\item[Bew.:] Operationen berrechnen:\\
+$\begin{array}{l|l}
+ Zeile &  Operationen \\
+\hline
+1 & 0 \\
+2 & 0 \\
+3 & 4 \\
+4 & 5 \\
+5 & 4 \\
+6 & 2 \\
+7 & 4 \\
+8 & 3\\
+\end{array}$
+
+Bei der inneren for-Schleife ergibt sich ein Rechenaufwand von:\\
+3 für den Vergleich in der Schleife, 1 für i++ und dann Zeilen 5-8 aufaddiert insgesamt mal Anzahl Schleifendurchgänge + 1 für den letzten Vergleich + 1 für das Initialisieren i=0\\
+= (3 + 1 + 4 + 2 + 4 + 4)  (n-i -1) +2 \\
+= 17 (n-1) +2 \quad (i=0 ist der schlechteste Fall, der auftreten kann)\\
+= 17 - 17 +2 \\
+= 17n - 15 \\
+
+Bei der äußeren Schleife ergibt sich ein Rechenaufwand von:\\
+$(n-1) (17n-15) + 2\\
+= 17n^2 - 15n - 17n - 15 - 2 \\
+= 17n^2 - 32n + 17 \\$
+
+Da es keine weiteren Anweisungen gibt, bleibt der Rechenaufwand kleiner gleich: $17n^2 - 32n + 17$ 
+\end{enumerate}
+\end{document}
