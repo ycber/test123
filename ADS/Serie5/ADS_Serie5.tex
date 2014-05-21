@@ -1,0 +1,179 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}    % noch mehr mathematische Symbole
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Gruppe David Gruner}
+\rhead{Dimitrios D. Antoulis / Timm-O. Stooß}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\usepackage{geometry}                                                                    % Rand einstellen
+\geometry{verbose,a4paper,tmargin=25mm,bmargin=25mm,lmargin=30mm,rmargin=35mm}
+
+% Für natürliche Zahlen N, reelle Zahlen R und so weiter ...
+\AtBeginDocument{%
+  \let\mathbb\relax
+  \DeclareMathAlphabet\PazoBB{U}{fplmbb}{m}{n}
+  \newcommand{\mathbb}{\PazoBB}
+}
+\newcommand {\N}{\PazoBB{N}}   % natürliche Zahlen
+\newcommand {\Z}{\PazoBB{Z}}   % ganze Zahlen
+\newcommand {\Q}{\PazoBB{Q}}   % rationale Zahlen
+\newcommand {\R}{\PazoBB{R}}   % reelle Zahlen
+
+
+\newcommand {\Pm}{\mathcal{P}} % Potenzmenge
+\newcommand {\Rm}{\mathcal{R}} % kalligravarphisches R
+\newcommand {\Om}{\mathcal{O}} % kalligravarphisches O
+
+
+\begin{document}
+
+\subsection*{ADS - Serie 5}
+\subsection*{Aufgabe 5.2}
+\begin{enumerate}
+\item[Vor.:] Seien $f, g, h, f_i: \N \to \R_{>0}, i\in\N$ gegeben.
+\item[a) Beh.:] 
+          $\big(f\in \Om(g) \land g \in \Om(f) \big) \Longleftrightarrow \big(f \in \Theta(g) \land g\in \Theta(f) \big)$
+\item[Bew.:] '$\Longrightarrow$':
+             Es gelte $f\in \Om(g)$ und $g \in \Om(f)$. \\
+             Also gilt $\exists C_0 \in \R_{>0} : \exists n_0 \in \N : \forall n \in \N_{\geq n_0} : f(n) \leq C_0 \cdot g(n)$ \\
+                   und  $\exists C_1 \in \R_{>0} : \exists n_1 \in \N : \forall n \in \N_{\geq n_1} : g(n) \leq C_1 \cdot f(n)$. \\
+             Es seien $C_0, n_0, C_1$ und $n_1$ entsprechend gewählt. 
+
+            Sei $C_2 = \frac{1}{ C_0}$.   Dann gilt für $n\geq$ $n_0$:
+                      \begin{align*}
+                                                         f(n)                       &  \leq C_0 \cdot g(n)              \\
+                                          \frac{1}{ C_0}   \cdot f(n)  &  \leq g(n)                               \\
+                                                            C_2   \cdot f(n)  &  \leq g(n)                               \\
+                      \end{align*}
+          Also gilt für max$(n_0, n_1)$:
+                                     $g(n) \geq C_2 \cdot f(n)$ und $g(n) \leq C_1 f(n)$. Damit gilt $g \in \Theta (f)$.
+
+          Sei $C_3 = \frac{1}{ C_1} $. Dann gilt für $n\geq$ $n_1$:
+                      \begin{align*}
+                                                        g(n)                                  &  \leq C_1 \cdot f(n)              \\
+                                                     \frac{1}{ C_1}   \cdot f(n)  &  \leq f(n)                               \\
+                                                                      C_3   \cdot f(n)  &  \leq f(n)                               \\
+                      \end{align*}
+                   Also gilt für $n\geq$ max$(n_0, n_1)$:
+                                     $f(n) \geq C_3 \cdot g(n)$ und $f(n) \leq C_0 \cdot g(n)$. Damit gilt $g \in \Theta (f)$.\vspace{0.5cm}
+                   
+                       '$\Longleftarrow$' folgt direkt aus der Definition von $\Theta$.
+
+
+\item[b) Beh.:] 
+          $\big(f\in \Om(g) $ und $ h \in \Omega(g) \big) \Longrightarrow f \in \Om(h)$
+\item[Bew.:] Es gelte $f\in \Om(g) \land h \in \Omega(g)$.  \\
+                     Dann gilt 
+                     $\exists C_0\in  \R_{>0} : \exists n_0 \in \N : \forall n \in \N_{\leq n_0} : f(n) \leq C_0 \cdot g(n)$ \\
+                     und $\exists C_1\in \R_{>0} : \exists n_1 \in \N : \forall n \in \N_{\leq n_1} : h(n) \geq C_1 \cdot g(n)$ \\
+                     Sei $C_2 = \frac{C_0}{C_1}$. Dann gilt für $n\geq$ max$(n_0, n_1)$:
+                      \begin{align*}
+                                                        f(n)                       &  \leq C_0 \cdot g(n)                                    \\
+                                                        f(n)                       &  \leq C_0 \cdot \frac {C_1} {C_1} \cdot g(n)          \\
+                                                                                     &  \leq \frac{C_0}{C_1} \cdot h(n)                           \\
+                      \end{align*}
+                      Also ist $f \in\Om(h)$.
+
+
+
+\item[c) Beh.:] 
+          $\big( \forall i\in\{1, \dots, k\} : f_i \in \Om(g) \big) \Longrightarrow \sum^k_{i=1} f_i \in\Om(g)$
+\item[Bew.:] Induktion über $k$
+\item[IA.:] Sei $k=1$ und es gelte $\forall i\in\{1, \dots, k\} : f_i \in \Om(g)$.\\
+                  Dann ist  $\sum^k_{i=1} f_i = \sum^1_{i=1} f_i = f_1 \in \Om(g)$.
+\item[IV.:] Sei $k\in \N$  und es gelte $\big( \forall i\in\{1, \dots, k\} : f_i \in \Om(g) \big) \Longrightarrow \sum^k_{i=1} f_i \in\Om(g)$.
+
+\item[IS.:] zz.: $\big( \forall i\in\{1, \dots, k+1\} : f_i \in \Om(g) \big) \Longrightarrow \sum^{k+1}_{i=1} f_i \in\Om(g)$\\
+
+                      Es gelte: $\forall i\in\{1, \dots, k+1\} : f_i \in \Om(g)$\\
+                      Dann gilt insbes.: $\exists C_1 \in \N : \exists n_1\in \N : \forall n \in\N_{>n_1} : f_{k+1}(n)  \leq C_1 \cdot g(n)$ \\
+                      und nach IV gilt: $\exists C_0 \in \N : \exists n_0\in \N : \forall n \in\N_{>n_0} :  \sum^k_{i=1} f_i(n)  \leq C_0\cdot g(n)$
+
+                     Sei $C_2 = C_0 + C_1$. Dann gilt für $n>$ max$(n_0, n_1)$:
+                      \begin{align*}
+                                                                        &  \sum^k_{i=1} f_i (n)                               & \quad \leq  \quad& C_0\cdot g(n)                               \\  
+                          \Longleftrightarrow  \quad    &  f_{k+1}(n)  + \sum^k_{i=1} f_i (n)          & \quad \leq  \quad &C_0\cdot g(n)   + f_{k+1}(n)                              \\
+                          \Longleftrightarrow  \quad    &   \sum^{k+1}_{i=1} f_i (n)                    & \quad \leq  \quad& C_0\cdot g(n)   +       C_1 \cdot g(n)                         \\
+                          \Longleftrightarrow  \quad    &   \sum^{k+1}_{i=1} f_i (n)               & \quad \leq  \quad& (C_0 +  C_1) \cdot g(n)                         \\
+                          \Longleftrightarrow  \quad    &   \sum^{k+1}_{i=1} f_i (n)                & \quad \leq  \quad &C_2 \cdot g(n)                         \\
+                      \end{align*}
+                     Also ist $ \sum^k_{i=1} f_i \in\Om(g)$.
+
+
+\item[d) Beh.:] 
+          $\big( \forall i\in\{1, \dots, k\} : f_i \in \Omega(g) \big) \Longrightarrow \prod^k_{i=1} f_i \in\Omega(g)$
+\item[Bew.:] Induktion über $k$
+\item[IA.:] Sei $k=1$ und es gelte $\forall i\in\{1, \dots, k\} : f_i \in \Omega(g)$.\\
+                  Dann ist  $\prod^k_{i=1} f_i = \prod^1_{i=1} f_i = f_1 \in \Omega(g)$.
+\item[IV.:] Sei $k\in \N$  und es gelte $\big( \forall i\in\{1, \dots, k\} : f_i \in \Omega(g) \big) \Longrightarrow \prod^k_{i=1} f_i \in\Omega(g)$.
+
+\item[IS.:] zz.: $\big( \forall i\in\{1, \dots, k+1\} : f_i \in \Omega(g) \big) \Longrightarrow \prod^{k+1}_{i=1} f_i \in\Omega(g)$\\
+
+                      Es gelte: $\forall i\in\{1, \dots, k+1\} : f_i \in \Omega(g)$\\
+                      Dann gilt insbes.: $\exists C_1 \in \N : \exists n_1\in \N : \forall n \in\N_{>n_1} : f_{k+1}(n)  \geq C_1 \cdot g(n)$ \\
+                      und nach IV gilt: $\exists C_0 \in \N : \exists n_0\in \N : \forall n \in\N_{>n_0} :  \prod^k_{i=1} f_i(n)  \geq C_0\cdot g(n)$ 
+
+                      Sei $C_2 = C_0 \cdot  C_1$. Dann gilt für $n>$ max$(n_0, n_1)$:
+                      \begin{align*}
+                                                                        &  \prod^k_{i=1} f_i (n)                                    & \quad \geq  \quad& C_0\cdot g(n)                               \\  
+                          \Longleftrightarrow  \quad    &  f_{k+1}(n) \cdot \prod^k_{i=1} f_i (n)          & \quad \geq  \quad &C_0\cdot g(n)   \cdot  f_{k+1}(n)                              \\
+                          \Longleftrightarrow  \quad    &   \prod^{k+1}_{i=1} f_i (n)                    & \quad \geq  \quad& C_0\cdot g(n)   \cdot       C_1 \cdot g(n)                         \\
+                          \Longleftrightarrow  \quad    &   \prod^{k+1}_{i=1} f_i (n)               & \quad \geq  \quad& (C_0 \cdot  C_1) \cdot g(n)                         \\
+                          \Longleftrightarrow  \quad    &   \prod^{k+1}_{i=1} f_i (n)                & \quad \geq  \quad &C_2 \cdot g(n)                         \\
+                      \end{align*}
+                     Also ist $ \prod^k_{i=1} f_i \in\Omega(g)$.
+
+
+
+
+
+
+
+
+\end{enumerate}
+\newpage
+
+\subsection*{Aufgabe 5.3}
+\begin{enumerate}
+\item[a) Beh.:] Sei $C = 14$ und $n_0 = 1$. Dann ist $7n^6 + 3n^2 \in \Om(n^7)$.
+\item[Bew.:]  Es gilt für $n\geq 1$:
+   \begin{align*}
+                                                       7n^6 + 3n^2          & \leq 7n^6 + 7n^2      \\
+                                                                                       & =    7 ( n^6 + n^2)    \\
+                                                                                       & \leq 7 ( n^6 + n^6)    \\
+                                                                                       & = 14 n^6                     \\
+                                                                                       & \leq 14 n^7    = C \cdot n^7                 \\
+   \end{align*}
+\item[b) Beh.:] Sei $C = 1$ und $n_0 = 1$. Dann ist $n^a \in \Om(e^n)$ für alle $a\in \N$.
+\item[Bew.:]  Es gilt für $n\geq 1$:
+   \begin{align*}
+                                                       n^a                         & = a!\cdot\frac {n^{a}}{a!}       \\
+                                                                                       & \leq \sum^{a!}_{k=0} \frac {n^{a}}{a!}      \\
+                                                                                       & \leq \sum^{\infty}_{k=0} \frac {n^{k}}{k!}      \\
+                                                                                       & = e^n   = C\cdot e^n                                                         \\
+   \end{align*}
+\item[c) Beh.:] Sei $C = 1$ und $n_0 = 3$. Dann ist $n!\in \Omega(2^n)$.
+\item[Bew.:]  Es gilt für $n\geq 3$:
+   \begin{align*}
+                                                      n!                    \quad         & =                                        \quad \prod^n_{k=1} k    \\
+                                                                                       & \stackrel{n \geq 3}{\geq} \quad  \prod^n_{k=1} 2   \\
+                                                                                       & =                                        \quad 2^n  = C\cdot 2^n\\
+   \end{align*}
+
+\item[d) Beh.:] Sei $C = \frac 1 {\log_b(a)}$ und $n_0 = 1$. Dann ist $\log_a(n) \in \Theta( \log_b(n))$ für alle $a,b \in \R_{>1}$.
+\item[Bew.:] Es gilt für $n\geq 1$:
+   \begin{align*}
+                                                    log_a(n)                      &  = \frac {\log_b(n)} {\log_b(a)}         \\
+                                                                                       &  = \frac 1 {\log_b(a)}\cdot \log_b(n)  \\
+                                                                                       & =  C \cdot \log_b(n)  \\
+   \end{align*}
+\end{enumerate}
+\end{document}
